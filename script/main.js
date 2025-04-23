@@ -25,12 +25,12 @@ function copyIp(){
 fetch('https://api.mcstatus.io/v2/status/java/2b2t.cc')
     .then(response => response.json())
     .then(data => {
-        const serverStatus = document.querySelector('#serverStatus');
+        const serverStatus = document.querySelector('#server-status');
         if(data.online){
-            serverStatus.innerText = 'Status: online \n' + 'Players online: ' + data.players.online
+            serverStatus.innerHTML = 'Status: <span style="color: lightgreen">online</span> <br/>' + 'Players online: ' + data.players.online + '/' + data.players.max
         }
         else{
-            serverStatus.innerText = 'Server is offline'
+            serverStatus.innerHTML = 'Status: <span style="color: darkred">offline</span> <br/>'
         }
     })
     .catch(console.error)
