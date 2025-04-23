@@ -1,15 +1,18 @@
-body {
+body, html {
     background: #222;
     color: #ccc;
     font-family: Verdana, Arial, sans-serif;
     font-size: 12px;
     line-height: 1.4;
+    height: 95%;
 }
 
 .holder {
     width: 900px;
     margin: 0 auto;
     padding: 20px;
+    min-height: 100%;
+    position: relative;
 }
 
 .header {
@@ -91,6 +94,12 @@ button:hover {
 
 .clear {
     clear: both;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer a{
