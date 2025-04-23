@@ -27,7 +27,7 @@ fetch('https://api.mcstatus.io/v2/status/java/2b2t.cc')
     .then(data => {
         const serverStatus = document.querySelector('#serverStatus');
         if(data.online){
-            serverStatus.innerText = 'Status: online \n' + 'Players: ' + data.players.online
+            serverStatus.innerText = 'Status: online \n' + 'Players online: ' + data.players.online
         }
         else{
             serverStatus.innerText = 'Server is offline'
