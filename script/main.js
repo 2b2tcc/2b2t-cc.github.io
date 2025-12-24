@@ -22,17 +22,22 @@ function copyIp(){
 }
 
 // Check server status
-fetch('https://api.mcstatus.io/v2/status/java/2b2t.cc')
-    .then(response => response.json())
-    .then(data => {
-        const serverStatus = document.querySelector('#server-status');
-        if(data.online){
-            serverStatus.innerHTML = 'Status: <span style="color: lightgreen">online</span> <br/>' + 'Players online: ' + data.players.online + '/' + data.players.max
+async function fetchServerStatus() {
+    const el = document.getElementById('server-status')
+    try {
+        const response = await fetch('https://api.mcstatus.io/v2/status/java/2b2t.cc')
+        const data = await response.json()
+        if (data.online) {
+            el.innerHTML = `Status: <span style="color: lightgreen">online</span> <br/> Players online: ${data.players.online} / ${data.players.max}`
         }
-        else{
-            serverStatus.innerHTML = 'Status: <span style="color: darkred">offline</span> <br/>'
+        else {
+            el.innerHTML = `Status: <span style="color: darkred">offline</span> <br/>`
         }
-    })
-    .catch(console.error)
-
-
+    } catch (err) {
+        console.error(err)
+        el.innerHTML = `Status: <span style="color: gray">unknown</span><br/>`
+    }
+}
+document.addEventListener('DOMContentLoaded', () => {
+    fetchServerStatus()
+})
